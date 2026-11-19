@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Logbook</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div class="page-head">
+  <div class="eyebrow">Logbook</div>
+  <h1>Observation log</h1>
+  <p>Every rated observation of a catalog object also trains your recommender. A 5-star night teaches it more than any setting could.</p>
+</div>
+<div class="grid g4" id="stats" style="margin-bottom:18px"></div>
+<div class="split">
+  <aside class="card">
+    <h3 id="form-title">Log an observation</h3>
+    <form id="log-form" novalidate>
+      <label for="objectId">Catalog object</label><select id="objectId" name="objectId"><option value="">— Not in catalog —</option></select>
+      <div id="target-wrap"><label for="targetName">Target name</label><input id="targetName" name="targetName" maxlength="120" placeholder="e.g. Comet C/2026 A1"></div>
+      <label for="observedAt">When</label><input id="observedAt" name="observedAt" type="datetime-local" required>
+      <div class="fields">
+        <div><label for="lat">Latitude</label><input id="lat" name="lat" type="number" step="0.0001" required></div>
+        <div><label for="lon">Longitude</label><input id="lon" name="lon" type="number" step="0.0001" required></div>
+        <div><label for="seeing">Seeing (1–5)</label><select id="seeing" name="seeing"></select></div>
+        <div><label for="transparency">Transparency (1–5)</label><select id="transparency" name="transparency"></select></div>
+      </div>
+      <label for="rating">How good was it? (1–5)</label><select id="rating" name="rating"></select>
+      <label for="equipment">Equipment</label><input id="equipment" name="equipment" maxlength="120" placeholder="e.g. 8&quot; Dobsonian, 25 mm eyepiece">
+      <label for="notes">Notes</label><textarea id="notes" name="notes" maxlength="2000"></textarea>
+      <div class="row"><button class="btn" type="submit" id="save-btn">Save observation</button><button class="btn ghost hidden" type="button" id="cancel-edit">Cancel</button></div>
+    </form>
+  </aside>
+  <div>
+    <section class="card"><h3>Your observations</h3><div id="obs-list"></div></section>
+    <section class="card" id="insights-card" style="margin-top:18px">
+      <h3>What your logbook says</h3>
+      <p class="small muted">Average rating of your nights, grouped by conditions and targets. Calculated by a MongoDB aggregation over your own observations.</p>
+      <div id="insights"><p class="empty">Log a few observations to see patterns.</p></div>
+    </section>
+  </div>
+</div>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="log.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Events</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div class="page-head">
+  <div class="eyebrow">Events</div>
+  <h1>Sky events &amp; star parties</h1>
+  <p>Moon phases, eclipses, oppositions and elongations are computed from planetary theory for the next 120 days. Star parties are posted by the community.</p>
+</div>
+<div class="split" style="grid-template-columns:1fr minmax(300px,380px)">
+  <section class="card">
+    <div class="row"><h3>Computed sky events</h3><span class="spacer"></span><div class="chips" id="kind-chips"></div></div>
+    <div id="sky-events"><p class="muted small">Computing…</p></div>
+  </section>
+  <aside>
+    <section class="card"><h3>Star parties</h3><div id="community"></div></section>
+    <section class="card hidden" id="host-card" style="margin-top:18px">
+      <h3>Host a star party</h3>
+      <form id="event-form" novalidate>
+        <label for="title">Title</label><input id="title" name="title" maxlength="120" required>
+        <label for="startsAt">Starts</label><input id="startsAt" name="startsAt" type="datetime-local" required>
+        <label for="locationName">Where</label><input id="locationName" name="locationName" maxlength="120" required>
+        <label for="description">Details</label><textarea id="description" name="description" maxlength="2000"></textarea>
+        <button class="btn block" type="submit">Post event</button>
+      </form>
+    </section>
+  </aside>
+</div>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="events.js"></script>
+</body>
+</html>

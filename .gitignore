@@ -1,0 +1,5 @@
+node_modules/
+.env
+simulation-results.json
+*.log
+.DS_Store

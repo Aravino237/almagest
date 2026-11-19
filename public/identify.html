@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Identify</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div class="page-head">
+  <div class="eyebrow">Image classifier</div>
+  <h1>Identify a sky object</h1>
+  <p>Upload an astro image. A neural network trained for Almagest classifies it entirely in your browser; the image never leaves your device.</p>
+</div>
+<div class="split">
+  <div>
+    <div class="drop" id="drop" tabindex="0" role="button" aria-label="Choose or drop an image">Drop an image here, or click to choose<input type="file" id="file" accept="image/*" hidden></div>
+    <canvas id="preview" width="256" height="256" aria-label="Preview of the uploaded image"></canvas>
+    <div class="samples" id="samples" aria-label="Sample images"></div>
+  </div>
+  <div class="card"><h2>Prediction</h2><div id="result" aria-live="polite" class="muted">Upload an image or pick a sample.</div></div>
+</div>
+<p class="note" id="meta-note"></p>
+<section class="card" id="galaxy-card" style="margin-top:28px">
+  <div class="eyebrow">Real-data model</div>
+  <h2>Galaxy morphology</h2>
+  <p class="muted small" id="galaxy-status">Checking whether the galaxy model is installed…</p>
+  <div id="galaxy-body" class="hidden">
+    <div class="drop" id="g-drop" tabindex="0" role="button" aria-label="Choose a galaxy image" style="margin-top:12px">Drop a galaxy image, or click to choose<input type="file" id="g-file" accept="image/*" hidden></div>
+    <canvas id="g-preview" width="256" height="256" style="width:100%;max-width:256px;aspect-ratio:1;background:#000;border-radius:8px;margin-top:12px;display:none" aria-label="Preview"></canvas>
+    <div id="g-result" aria-live="polite" style="margin-top:12px"></div>
+    <p class="note" id="g-note"></p>
+  </div>
+</section>
+
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="classifier.js"></script>
+<script src="identify.js"></script>
+<script src="galaxy.js"></script>
+</body>
+</html>

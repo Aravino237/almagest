@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Plan a session</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div class="page-head">
+  <div class="eyebrow">Session planner</div>
+  <h1>Plan a session</h1>
+  <p>Physics decides what is possible: altitude, your limiting magnitude, darkness. Then a model trained on your ratings decides what is worth your time. Rate the picks and the next plan adapts.</p>
+</div>
+<div class="split">
+  <aside class="card">
+    <form id="plan-form">
+      <label for="at">Date and time</label><input id="at" name="at" type="datetime-local" required>
+      <label for="loc-mode">Location</label>
+      <select id="loc-mode"><option value="profile">My saved location</option><option value="custom">Somewhere else…</option></select>
+      <div class="fields hidden" id="custom-loc">
+        <div><label for="lat">Latitude</label><input id="lat" name="lat" type="number" step="0.01" min="-90" max="90"></div>
+        <div><label for="lon">Longitude</label><input id="lon" name="lon" type="number" step="0.01" min="-180" max="180"></div>
+      </div>
+      <button class="btn block" type="submit">Generate plan</button>
+    </form>
+    <hr class="rule">
+    <div id="setup" class="small muted">Loading your setup…</div>
+  </aside>
+  <section>
+    <div id="plan-summary"></div>
+    <div id="plan-results" aria-live="polite"></div>
+  </section>
+</div>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="plan.js"></script>
+</body>
+</html>

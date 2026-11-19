@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Sign in</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div style="max-width:420px;margin:20px auto 0">
+  <div class="chips" style="margin-bottom:18px"><button class="chip active" id="tab-login" type="button">Sign in</button><button class="chip" id="tab-signup" type="button">Create account</button></div>
+  <section class="card">
+    <h2 id="auth-title">Welcome back</h2>
+    <form id="auth-form" novalidate>
+      <div id="name-wrap" class="hidden"><label for="displayName">Display name</label><input id="displayName" name="displayName" autocomplete="nickname" maxlength="60"></div>
+      <label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required>
+      <label for="password">Password</label><input id="password" name="password" type="password" autocomplete="current-password" required minlength="8">
+      <p class="faint small" id="pw-hint" style="margin-top:6px" hidden>At least 8 characters.</p>
+      <button class="btn block" type="submit" id="auth-submit">Sign in</button>
+    </form>
+  </section>
+  <p class="muted small" style="margin-top:14px">Your password is stored only as a bcrypt hash. Signing in sets a secure, HTTP-only session cookie.</p>
+</div>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="login.js"></script>
+</body>
+</html>

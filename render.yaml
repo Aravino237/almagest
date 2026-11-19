@@ -1,0 +1,22 @@
+databases:
+  - name: almagest-db
+    plan: free
+    databaseName: almagest
+    user: almagest
+
+services:
+  - type: web
+    name: almagest
+    runtime: node
+    plan: free
+    buildCommand: npm ci --omit=dev
+    startCommand: node server.js
+    healthCheckPath: /api/health
+    envVars:
+      - { key: NODE_ENV, value: production }
+      - { key: TRUST_PROXY, value: "1" }
+      - { key: AUTO_SETUP, value: "1" }
+      - { key: JWT_SECRET, generateValue: true }
+      - { key: DATABASE_URL, fromDatabase: { name: almagest-db, property: connectionString } }
+      - { key: MONGODB_URI, sync: false }
+      - { key: MONGODB_DB, value: almagest }

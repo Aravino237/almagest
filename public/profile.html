@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Profile</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<div class="page-head">
+  <div class="eyebrow">Profile</div>
+  <h1>Your setup &amp; your model</h1>
+  <p>Your location, sky and equipment set the hard limits. The panel on the right shows what the recommender has learned from you, in the open.</p>
+</div>
+<div class="split">
+  <aside class="card">
+    <h3>Observing setup</h3>
+    <form id="profile-form" novalidate>
+      <label for="locationName">Location name</label><input id="locationName" name="locationName" maxlength="80">
+      <div class="fields">
+        <div><label for="lat">Latitude</label><input id="lat" name="lat" type="number" step="0.0001"></div>
+        <div><label for="lon">Longitude</label><input id="lon" name="lon" type="number" step="0.0001"></div>
+      </div>
+      <button class="btn ghost small" type="button" id="geo" style="margin-top:8px">Use my current location</button>
+      <label for="bortle">Sky darkness (Bortle class)</label>
+      <select id="bortle" name="bortle">
+        <option value="1">1 · Excellent dark site</option><option value="2">2 · Typical dark site</option><option value="3">3 · Rural sky</option>
+        <option value="4">4 · Rural/suburban transition</option><option value="5">5 · Suburban</option><option value="6">6 · Bright suburban</option>
+        <option value="7">7 · Suburban/urban transition</option><option value="8">8 · City</option><option value="9">9 · Inner city</option>
+      </select>
+      <label for="apertureMm">Instrument aperture</label>
+      <select id="apertureMm" name="apertureMm">
+        <option value="0">Naked eye</option><option value="50">50 mm binoculars</option><option value="70">70 mm refractor</option>
+        <option value="102">102 mm (4") telescope</option><option value="130">130 mm (5") reflector</option><option value="150">150 mm (6") Dobsonian</option>
+        <option value="200">200 mm (8") Dobsonian</option><option value="254">254 mm (10") Dobsonian</option><option value="300">300 mm (12") Dobsonian</option>
+      </select>
+      <label for="experience">Experience</label>
+      <select id="experience" name="experience"><option value="beginner">Beginner</option><option value="intermediate">Intermediate</option><option value="advanced">Advanced</option></select>
+      <label for="minAlt">Lowest altitude you can see (trees, buildings)</label>
+      <select id="minAlt" name="minAlt"><option value="10">10°</option><option value="15">15°</option><option value="20">20°</option><option value="30">30°</option><option value="40">40°</option></select>
+      <p class="small muted" id="limit-line" style="margin-top:12px"></p>
+      <button class="btn block" type="submit">Save setup</button>
+    </form>
+  </aside>
+  <section class="card">
+    <div class="row"><h3>What Almagest has learned about you</h3><span class="spacer"></span><button class="btn danger small" id="reset-model" type="button">Reset my model</button></div>
+    <p class="small muted" id="model-summary"></p>
+    <h3 style="margin-top:18px;font-size:17px">Taste by object type</h3>
+    <p class="small faint">Your personal offset from the community model. Right of centre means your ratings push this type up.</p>
+    <div id="affinities"></div>
+    <h3 style="margin-top:22px;font-size:17px">How each factor is weighted for you</h3>
+    <div class="table-wrap"><table><thead><tr><th>Factor</th><th>Starting prior</th><th>Community</th><th>You</th></tr></thead><tbody id="weights"></tbody></table></div>
+    <h3 style="margin-top:22px;font-size:17px">Recent training examples</h3>
+    <div id="recent"></div>
+  </section>
+</div>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="profile.js"></script>
+</body>
+</html>

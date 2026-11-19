@@ -1,0 +1,30 @@
+# One-box deployment (EC2 or any VM):  docker compose up -d --build
+services:
+  postgres:
+    image: postgres:16
+    restart: unless-stopped
+    environment: { POSTGRES_PASSWORD: almagest, POSTGRES_DB: almagest }
+    volumes: [pgdata:/var/lib/postgresql/data]
+    healthcheck: { test: ["CMD-SHELL", "pg_isready -U postgres"], interval: 3s, retries: 20 }
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes: [mongodata:/data/db]
+    healthcheck: { test: ["CMD", "mongosh", "--quiet", "--eval", "db.runCommand({ping:1}).ok"], interval: 5s, retries: 20 }
+  app:
+    build: .
+    restart: unless-stopped
+    ports: ["80:4000"]
+    depends_on:
+      postgres: { condition: service_healthy }
+      mongo: { condition: service_healthy }
+    environment:
+      NODE_ENV: production
+      COOKIE_SECURE: "0"          # plain HTTP on a bare IP; set to 1 once you add HTTPS
+      TRUST_PROXY: "1"
+      AUTO_SETUP: "1"
+      JWT_SECRET: ${JWT_SECRET:-change-this-demo-secret-please-0123456789abcdef}
+      DATABASE_URL: postgres://postgres:almagest@postgres:5432/almagest
+      MONGODB_URI: mongodb://mongo:27017
+      MONGODB_DB: almagest
+volumes: { pgdata: {}, mongodata: {} }

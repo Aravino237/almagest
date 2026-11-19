@@ -1,0 +1,7 @@
+# Install PyTorch FIRST using the command from https://pytorch.org (choose Windows / Pip / CUDA),
+# then:
+numpy
+h5py
+matplotlib
+onnx
+onnxruntime

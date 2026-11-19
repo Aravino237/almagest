@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Almagest — Tonight</title>
+<meta name="description" content="Almagest: plan observing sessions, log what you see, and get recommendations that learn from you.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 26 26'%3E%3Ccircle cx='13' cy='13' r='11' fill='none' stroke='%23C9A44C' stroke-width='2'/%3E%3Ccircle cx='13' cy='13' r='2.5' fill='%23C9A44C'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="nav"></header>
+<main>
+<section id="guest-hero" class="hero hidden">
+  <div class="eyebrow">Astronomy portal</div>
+  <h1>Know what's worth pointing your telescope at tonight.</h1>
+  <p>Almagest computes what is actually above your horizon right now, filters it by what your equipment and sky can reach, and ranks it with a model that learns from every target you rate and every observation you log.</p>
+  <div class="row"><a class="btn" href="login.html?mode=signup">Create a free account</a><a class="btn ghost" href="plan.html">Try the planner as a guest</a></div>
+</section>
+<section id="user-head" class="page-head hidden">
+  <div class="eyebrow" id="greet-eyebrow">Tonight</div>
+  <h1 id="greet">Good evening</h1>
+  <p id="greet-sub"></p>
+</section>
+<div class="grid g4" id="sky-stats"></div>
+<div class="grid g2" style="margin-top:18px">
+  <section class="card"><div class="row"><h3>Top picks right now</h3><span class="spacer"></span><a class="small" href="plan.html">Full plan →</a></div><div id="picks"><p class="muted small">Computing…</p></div></section>
+  <section class="card"><div class="row"><h3>Coming up in the sky</h3><span class="spacer"></span><a class="small" href="events.html">All events →</a></div><div id="upcoming"><p class="muted small">Loading…</p></div></section>
+</div>
+<section class="card hidden" id="my-stats-card" style="margin-top:18px"><div class="row"><h3>Your observing record</h3><span class="spacer"></span><a class="small" href="log.html">Logbook →</a></div><div class="grid g4" id="my-stats"></div></section>
+</main>
+<footer>Almagest · positions from astronomy-engine (VSOP87 / ELP) · recommendations learn from your ratings and logs</footer>
+<script src="app.js"></script>
+<script src="home.js"></script>
+</body>
+</html>
